@@ -6,6 +6,7 @@ module Kingpin
   autoload :Frameworks,    "kingpin/frameworks"
   autoload :Hooks,         "kingpin/hooks"
   autoload :Configuration, "kingpin/configuration"
+  autoload :Logging,       "kingpin/logging"
 
   # Configure Kingpin with the given configuration file.
   #

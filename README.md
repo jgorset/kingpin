@@ -1,6 +1,6 @@
 # Kingpin
 
-Kingpin is an open source platform as a service.
+Kingpin is an open source platform as a service. It's pretty great.
 
 ## Usage
 
@@ -24,7 +24,7 @@ Kingpin is an open source platform as a service.
       > ...
       > Installing rails (3.1)
 
-    Exporting processes to upstart...
+    Exporting processes...
       $ foreman export upstart /etc/init/awesome
       > [foreman export] writing: /etc/init/awesome.conf
       > [foreman export] writing: /etc/init/awesome-web.conf
@@ -43,4 +43,4 @@ Kingpin is an open source platform as a service.
 
 ## Installation
 
-Nuh-uh — it's not ready yet.
+... nuh-uh — it's not ready yet.

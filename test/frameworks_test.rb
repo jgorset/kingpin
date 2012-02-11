@@ -1,6 +1,7 @@
 require "kingpin"
 require "minitest/spec"
 require "minitest/autorun"
+require "helpers"
 
 describe Kingpin::Frameworks do
 
@@ -10,22 +11,22 @@ describe Kingpin::Frameworks do
   end
 
   it "can identify a rails app" do
-    Kingpin::Frameworks.identify(File.dirname(__FILE__) + "/fixtures/frameworks/rails").must_be_instance_of Kingpin::Frameworks::Rails
+    Kingpin::Frameworks.identify(ROOT + "/fixtures/frameworks/rails").must_be_instance_of Kingpin::Frameworks::Rails
   end
 
   it "can identify a django project" do
-    Kingpin::Frameworks.identify(File.dirname(__FILE__) + "/fixtures/frameworks/django").must_be_instance_of Kingpin::Frameworks::Django
+    Kingpin::Frameworks.identify(ROOT + "/fixtures/frameworks/django").must_be_instance_of Kingpin::Frameworks::Django
   end
 
   it "complains about ambigious applications" do
     lambda do
-      Kingpin::Frameworks.identify(File.dirname(__FILE__) + "/fixtures/frameworks/djangorails")
+      Kingpin::Frameworks.identify(ROOT + "/fixtures/frameworks/djangorails")
     end.must_raise Kingpin::Frameworks::AmbigiousApplication
   end
 
   it "complains about unknown frameworks" do
     lambda do
-      Kingpin::Frameworks.identify(File.dirname(__FILE__) + "/fixtures/frameworks/bar")
+      Kingpin::Frameworks.identify(ROOT + "/fixtures/frameworks/bar")
     end.must_raise Kingpin::Frameworks::UnknownFramework
   end
 

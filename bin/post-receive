@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require "kingpin"
+
+arguments = STDIN.read
+
+old_revision = arguments[0]
+new_revision = arguments[1]
+ref          = arguments[2]
+path         = Dir.pwd
+
+begin
+  Kingpin::Hooks::PostReceive.new old_revision, new_revision, reference, repository_path
+rescue Exception => e
+  STDERR.puts e.message
+  exit 1
+end

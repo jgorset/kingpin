@@ -43,4 +43,4 @@ Kingpin is an open source platform as a service. It's pretty great.
 
 ## Installation
 
-... nuh-uh — it's not ready yet.
+... nuh-uh, it's not ready yet.

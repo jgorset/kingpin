@@ -1,6 +1,9 @@
 require "kingpin/frameworks/framework"
 
 module Kingpin
+
+  # The Frameworks module encapsulates logic for identifying
+  # frameworks and deploying applications built with them.
   module Frameworks
     @frameworks = []
 

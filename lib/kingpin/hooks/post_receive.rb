@@ -4,9 +4,13 @@ module Kingpin
     # Git post-receive hook.
     class PostReceive
 
+      # old_revision    - A string describing the commit the repository advanced from.
+      # new_revision    - A string describing the commit the repository advanced to.
+      # reference       - A string describing the reference that was updated.
+      # repository_path - A string describing the path to the repository that was pushed to.
       def initialize old_revision, new_revision, reference, repository_path
         destination = "/tmp/checkout"
-        branch      = reference.sub "refs/heads/", ""
+        branch      = reference[/refs\/heads\/(.*)/, 1]
 
         `git clone --branch=#{branch} #{repository_path} #{destination}`
 

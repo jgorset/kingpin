@@ -9,10 +9,15 @@ module Kingpin
       #
       # repository - A string describing the path to a repository.
       # branch     - A string describing a branch of the given repository.
+      #
+      # Returns the path to the application.
       def deploy repository_path, branch
-        # TODO: Get configuration from somewhere to set location
+        repository_name = repository_path[/([^\/]*).git/, 1]
+        destination     = Kingpin.configuration.root + "/" + repository_name
 
-        `git clone --branch=#{branch} #{repository_path} foobar`
+        `git clone --branch=#{branch} #{repository_path} #{destination}`
+
+        destination
       end
 
       class << self

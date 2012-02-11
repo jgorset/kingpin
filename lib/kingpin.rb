@@ -1,6 +1,21 @@
 require "kingpin/version"
 
 module Kingpin
-  autoload :Frameworks, "kingpin/frameworks"
-  autoload :Hooks,      "kingpin/hooks"
+  CONFIGURATION_PATH = "/etc/kingpin.yml"
+
+  autoload :Frameworks,    "kingpin/frameworks"
+  autoload :Hooks,         "kingpin/hooks"
+  autoload :Configuration, "kingpin/configuration"
+
+  # Configure Kingpin with the given configuration file.
+  #
+  # path - A string describing a path to the configuration file.
+  def self.configure path
+    @configuration = Configuration.new path
+  end
+
+  # Yield Kingpin's configuration.
+  def self.configuration
+    @configuration ||= Configuration.new CONFIGURATION_PATH
+  end
 end

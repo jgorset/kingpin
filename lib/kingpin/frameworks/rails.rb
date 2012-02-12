@@ -5,23 +5,17 @@ module Kingpin
 
     class Rails < Framework
 
+      def name
+        "Ruby on Rails"
+      end
+
       # Deploy the application.
       #
       # repository - A string describing the path to a repository.
       # branch     - A string describing a branch of the given repository.
       def deploy repository, branch
-        destination = Kingpin.configuration.root + "/" + repository[/([^\/]*).git/, 1]
 
-        section do
-          log "Deploying Ruby on Rails application to #{destination}..."
-        end
-
-        section "Cloning repository..." do
-          clone branch, repository, destination
-        end
-
-        Dir.chdir destination do
-
+        super do
           section "Installing dependencies with #{`bundle -v`.chomp}..." do
             install_dependencies
           end
@@ -29,10 +23,8 @@ module Kingpin
           section "Precompiling assets..." do
             precompile_assets
           end if precompile_assets?
-
         end
 
-        log "Deployment complete."
       end
 
       private

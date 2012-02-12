@@ -25,13 +25,12 @@ module Kingpin
           clone branch, repository, destination
         end
 
-        Dir.chdir destination do
+        context destination do
           yield
         end
 
         log "Deployment complete."
       end
-
 
       private
 
@@ -45,6 +44,13 @@ module Kingpin
 
         unless status.success?
           error output, indent: 2, prefix: "! "
+        end
+      end
+
+      # Yield the given block in the context of the given destination.
+      def context destination, &block
+        Dir.chdir destination do
+          block.call
         end
       end
 

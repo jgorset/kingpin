@@ -7,6 +7,7 @@ module Kingpin
   autoload :Hooks,         "kingpin/hooks"
   autoload :Configuration, "kingpin/configuration"
   autoload :Logging,       "kingpin/logging"
+  autoload :Processing,    "kingpin/processing"
 
   # Configure Kingpin with the given configuration file.
   #

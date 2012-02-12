@@ -38,7 +38,7 @@ module Kingpin
       candidates = []
 
       Frameworks.list.each do |framework|
-          candidates.push framework if framework.detect path
+        candidates.push framework if framework.detect path
       end
 
       if candidates.empty?
@@ -46,8 +46,7 @@ module Kingpin
       end
 
       if candidates.length > 1
-        raise AmbigiousApplication, "Your application passes as all of the " \
-                                    "following frameworks: #{candidates.join(", ")}"
+        raise AmbigiousApplication, "Your application matches any of the following frameworks: #{candidates.join(", ")}"
       end
 
       candidates.first.new

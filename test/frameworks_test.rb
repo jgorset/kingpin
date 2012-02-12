@@ -5,6 +5,10 @@ require "helpers"
 
 describe Kingpin::Frameworks do
 
+  before do
+    Kingpin.configure ROOT + "/fixtures/kingpin.yml"
+  end
+
   it "maintains a list of frameworks" do
     Kingpin::Frameworks.list.must_include Kingpin::Frameworks::Rails
     Kingpin::Frameworks.list.must_include Kingpin::Frameworks::Django

@@ -12,6 +12,5 @@ repository_path = Dir.pwd
 begin
   Kingpin::Hooks.post_receive old_revision, new_revision, reference, repository_path
 rescue Exception => e
-  STDERR.puts e.message
-  exit 1
+  abort e.message
 end

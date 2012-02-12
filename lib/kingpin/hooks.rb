@@ -10,7 +10,7 @@ module Kingpin
     # reference       - A string describing the reference that was updated.
     # repository_path - A string describing the path to the repository that was pushed to.
     def self.post_receive old_revision, new_revision, reference, repository_path
-      destination = "/tmp/checkout"
+      destination = "/tmp/kingpin/checkout"
       branch      = reference[/refs\/heads\/(.*)/, 1]
 
       `git clone --branch=#{branch} #{repository_path} #{destination}`

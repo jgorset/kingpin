@@ -13,8 +13,14 @@ module Kingpin
       !!@silent
     end
 
-    # Log an empty line.
-    def gap
+    # Yield a log section.
+    #
+    # name - A string describing the name of the section.
+    def section name = nil
+      log name if name
+
+      yield if block_given?
+
       puts
     end
 

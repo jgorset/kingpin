@@ -14,30 +14,27 @@ module Kingpin
       def deploy repository, branch
         destination = Kingpin.configuration.root + "/" + repository[/([^\/]*).git/, 1]
 
-        # Clone the repository...
-        log "Deploying Ruby on Rails application to #{destination}..."
+        section do
+          log "Deploying Ruby on Rails application to #{destination}..."
+        end
 
-        gap
+        section "Cloning repository..." do
+          clone branch, repository, destination
+        end
 
-        clone branch, repository, destination
+        Dir.chdir destination do
 
-        Dir.chdir destination
+          section "Installing dependencies with #{`bundle -v`.chomp}..." do
+            install_dependencies
+          end
 
-        gap
+          section "Precompiling assets..." do
+            precompile_assets
+          end if precompile_assets?
 
-        install_dependencies
-
-        gap
-
-        if precompile_assets?
-          precompile_assets
-
-          gap
         end
 
         log "Deployment complete."
-
-        destination
       end
 
       private
@@ -46,27 +43,41 @@ module Kingpin
       def clone branch, repository, destination
         command = "git clone --branch=#{branch} #{repository} #{destination}"
 
-        log "Cloning repository..."
+        log command, indent: 2, prefix: "$ "
 
-        run command, true
+        output, status = run command
+
+        unless status.success?
+          error out, indent: 2, prefix: "! "
+        end
       end
 
       # Install dependencies.
       def install_dependencies
         command = "bundle install"
 
-        log "Installing dependencies with #{`bundle -v`.chomp}..."
+        log command, indent: 2, prefix: "$ "
 
-        run command
+        output, status = run command
+
+        if status.success?
+          log output, indent: 2, prefix: "> "
+        else
+          error output, indent: 2, prefix: "! "
+        end
       end
 
       # Precompile assets.
       def precompile_assets
         command = "rake assets:precompile"
 
-        log "Precompiling assets..."
+        log command, indent: 2, prefix: "$ "
 
-        run command, true
+        output, status = run command
+
+        unless status.success?
+          error output, indent: 2, prefix: "! "
+        end
       end
 
       # Determine whether to precompile assets.

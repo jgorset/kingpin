@@ -22,7 +22,7 @@ module Kingpin
         end
 
         section "Cloning repository..." do
-          clone branch, repository, destination
+          clone branch, repository, destination or abort
         end
 
         context destination do
@@ -45,6 +45,8 @@ module Kingpin
         unless status.success?
           error output, indent: 2, prefix: "! "
         end
+
+        status.success?
       end
 
       # Yield the given block in the context of the given destination.

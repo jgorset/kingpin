@@ -29,19 +29,6 @@ module Kingpin
 
       private
 
-      # Clone the repository.
-      def clone branch, repository, destination
-        command = "git clone --branch=#{branch} #{repository} #{destination}"
-
-        log command, indent: 2, prefix: "$ "
-
-        output, status = run command
-
-        unless status.success?
-          error out, indent: 2, prefix: "! "
-        end
-      end
-
       # Install dependencies.
       def install_dependencies
         command = "bundle install"

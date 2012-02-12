@@ -28,16 +28,4 @@ describe Kingpin::Hooks do
     assert_match stdout, /deployment complete/i
   end
 
-  it "cannot deploy an ambigious application" do
-    old_revision = "0000000000000000000000000000000000000000"
-    new_revision = "0641d2df0b74e372e02c27e256c299afa469fe59"
-    ref          = "refs/heads/master"
-    path         = "#{ROOT}/fixtures/repositories/djangorails.git"
-
-    assert_raises Kingpin::Frameworks::AmbigiousApplication do
-      Kingpin::Hooks.post_receive old_revision, new_revision, ref, path
-    end
-
-  end
-
 end

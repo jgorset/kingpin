@@ -2,15 +2,15 @@
 
 require "kingpin"
 
-arguments = STDIN.read
+arguments = STDIN.read.split
 
-old_revision = arguments[0]
-new_revision = arguments[1]
-ref          = arguments[2]
-path         = Dir.pwd
+old_revision    = arguments[0]
+new_revision    = arguments[1]
+reference       = arguments[2]
+repository_path = Dir.pwd
 
 begin
-  Kingpin::Hooks::PostReceive.new old_revision, new_revision, reference, repository_path
+  Kingpin::Hooks.post_receive old_revision, new_revision, reference, repository_path
 rescue Exception => e
   STDERR.puts e.message
   exit 1

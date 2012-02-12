@@ -33,7 +33,7 @@ module Kingpin
       }.merge(options)
 
       message.lines.each do |line|
-        STDOUT.puts " " * options[:indent] + options[:prefix] + line unless silent?
+        $stdout.puts " " * options[:indent] + options[:prefix] + line unless silent?
       end
     end
 
@@ -52,7 +52,7 @@ module Kingpin
       }.merge(options)
 
       message.lines.each do |line|
-        STDERR.puts " " * options[:indent] + options[:prefix] + line unless silent?
+        $stderr.puts " " * options[:indent] + options[:prefix] + line unless silent?
       end
     end
 

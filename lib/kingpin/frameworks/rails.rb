@@ -29,9 +29,11 @@ module Kingpin
 
         gap
 
-        precompile_assets if precompile?
+        if precompile_assets?
+          precompile_assets
 
-        gap
+          gap
+        end
 
         log "Deployment complete."
 
@@ -68,7 +70,7 @@ module Kingpin
       end
 
       # Determine whether to precompile assets.
-      def precompile?
+      def precompile_assets?
         !File.exist? "public/assets/manifest.yml"
       end
 

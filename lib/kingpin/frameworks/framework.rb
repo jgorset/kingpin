@@ -44,7 +44,7 @@ module Kingpin
         output, status = run command
 
         unless status.success?
-          error out, indent: 2, prefix: "! "
+          error output, indent: 2, prefix: "! "
         end
       end
 

@@ -1,6 +1,6 @@
 # Kingpin
 
-Kingpin is an open source platform as a service. It's pretty great.
+Kingpin is an open source platform as a service. It's pretty great, and also not nearly done.
 
 ## Usage
 
